@@ -17,15 +17,54 @@
 <!--To write the Game descriptions with <p> tag-->
 <!--To use the <br> tag to start a new line-->
 <p>
-    * The game considers one word.<br>
+    * The game considers one fruit name.<br>
     * You have 5 opportunities to guess the letters in the word.<br>
     * If you guess all the letters in the word you win, otherwise you los.<br><br>
     Push the START to start the game<br>
-    Push the Cancel to go out
+   
 </p>
+<!--Add a button tag to start the game, and change size and color of the button with style-->
+<button id="startProgram" style="width: 150px; height: 40px; color:chartreuse">START</button>
 
+<!--The rest of the code by Java-->
 <script>
+// Create an array contains the words.
+var words = ["apple", "orange", "pear", "cherry", 
+            "strawberry", "nectarine", "grape", "mango", "blueberry",
+            "pomegranate", "plum", "banana", "raspberry","mandarin", 
+            "papaya", "kiwi", "pineapple", "lime", "lemon", "apricot", 
+            "grapefruit", "melon", "coconut", "avocado", "peach", "cucumber", 
+            "fig", "dragon", "kiwi", "garlic", "tomato", "potato", "lettuce", "onion"];
+// Create a variable to find the button element in the program
+var startButton = document.getElementById("startProgram");
+// Add the click event to the button to run the function
+startButton.addEventListener("click", game);  
+// Create a game function
+function game() {
+        // Inputs an index From the product of Math.(random) and words.length in the variable randomIndex.
+        // The Math.floor function rounds the input number down to the next nearest integer.
+        var randomIndex = Math.floor(Math.random() * words.length);
+        // Inputs randomly a word from the array words[] in randomWord.
+        var randomWord = words[randomIndex];
+        // Split the word into characters
+        var characters = randomWord.split("");
+        console.log (characters)
+        for ( var tried = 5; tried > 0; tried--) {
+            var letter = prompt ("Guess one letter of the considered fruit or the vegetable name:");
+            
+            // If the letter is found in the word
+            if (characters.includes(letter.toLowerCase())) {
+              var index = characters.indexOf(letter.toLowerCase());
+            // Tell the user that the word was found
+            console.log("FOUND: " + letter + " is in place: "+ index);
+            }
+          // Otherwise the word was not found
+            else {
+              // Give the output to the user
+              console.log("NOT FOUND: " + letter);
+              }
+        }
+}
 
-// TEST 2! With Sync!
 </script>
 
