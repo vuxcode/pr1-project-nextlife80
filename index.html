@@ -1,5 +1,6 @@
 <!--to use the "dark" color scheme by default-->
 <meta name="color-scheme" content="dark">
+
 <!--To change the font size of Paragraphs by use P{} and the Heading by use h1{} in the style tag-->
 <style>
     
@@ -12,8 +13,10 @@
         text-align: center;
       }
 </style>
+
 <!--To write the title-->
 <h1>The Hangman Game</h1>
+
 <!--To write the Game descriptions with <p> tag-->
 <!--To use the <br> tag to start a new line-->
 <p>
@@ -23,11 +26,13 @@
     Push the START to start the game<br>
    
 </p>
+
 <!--Add a button tag to start the game, and change size and color of the button with style-->
 <button id="startProgram" style="width: 150px; height: 40px; color:chartreuse">START</button>
 
 <!--The rest of the code by Java-->
 <script>
+
 // Create an array contains the words.
 var words = ["apple", "orange", "pear", "cherry", 
             "strawberry", "nectarine", "grape", "mango", "blueberry",
@@ -35,37 +40,67 @@ var words = ["apple", "orange", "pear", "cherry",
             "papaya", "kiwi", "pineapple", "lime", "lemon", "apricot", 
             "grapefruit", "melon", "coconut", "avocado", "peach", "cucumber", 
             "fig", "dragon", "kiwi", "garlic", "tomato", "potato", "lettuce", "onion"];
+
 // Create a variable to find the button element in the program
 var startButton = document.getElementById("startProgram");
+
 // Add the click event to the button to run the function
 startButton.addEventListener("click", game);  
+
 // Create a game function
 function game() {
         // Inputs an index From the product of Math.(random) and words.length in the variable randomIndex.
         // The Math.floor function rounds the input number down to the next nearest integer.
         var randomIndex = Math.floor(Math.random() * words.length);
+
         // Inputs randomly a word from the array words[] in randomWord.
         var randomWord = words[randomIndex];
+
         // Split the word into characters
         var characters = randomWord.split(""); // e.g.  ['a', 'p', 'r', 'i', 'c', 'o', 't']
         console.log (characters)
+
         // create a variable include the lifetime value
         var life = 5;
+
+        // create an Array to list the letters from user
+        var guessletter = [];  
+
+        // Create a array with freespace as long as the letters of the word.
+        var freespace = '_'.repeat(characters.length);
+        var freespace = freespace.split("");
+        
+        
         // Create a loop for inpute the letters
         for ( var tried = 100; tried > 0; tried--) {
             var letter = prompt ("Guess one letter of the chosen fruit or the vegetable name:").toLowerCase();
             
+            // Add the letters in array list
+            guessletter.push(letter)
+
+            // Show to user the letters he had guessed
+            console.log("The letters that you have guessed: " + guessletter);
+            
+
             // If the letter is found in the word
             if (characters.includes(letter)) {
+
               // The indexOf() method is used to find the index of a specific letter in the characters array.
               var index = characters.indexOf(letter)+1;
-            // Tell the user that the word was found
+
+            // Tell to user that the word was found
             console.log("FOUND: " + letter + " is in place: "+ index);
+
+            // update the right letter in the right free space
+            freespace[index-1] = letter;
+            console.log(freespace)
             }
           // Otherwise the word was not found
             else {
+
               // Reduce the life
               life--
+              
               // Give the output to the user
               console.log(letter + " NOT FOUND! " + "life: "+ life);
              
