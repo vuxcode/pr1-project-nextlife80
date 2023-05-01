@@ -17,7 +17,7 @@
 <!--To write the Game descriptions with <p> tag-->
 <!--To use the <br> tag to start a new line-->
 <p>
-    * The game considers one fruit name.<br>
+    * The game picks one fruit name.<br>
     * You have 5 opportunities to guess the letters in the word.<br>
     * If you guess all the letters in the word you win, otherwise you los.<br><br>
     Push the START to start the game<br>
@@ -47,23 +47,38 @@ function game() {
         // Inputs randomly a word from the array words[] in randomWord.
         var randomWord = words[randomIndex];
         // Split the word into characters
-        var characters = randomWord.split("");
+        var characters = randomWord.split(""); // e.g.  ['a', 'p', 'r', 'i', 'c', 'o', 't']
         console.log (characters)
-        for ( var tried = 5; tried > 0; tried--) {
-            var letter = prompt ("Guess one letter of the considered fruit or the vegetable name:");
+        // create a variable include the lifetime value
+        var life = 5;
+        // Create a loop for inpute the letters
+        for ( var tried = 100; tried > 0; tried--) {
+            var letter = prompt ("Guess one letter of the chosen fruit or the vegetable name:").toLowerCase();
             
             // If the letter is found in the word
-            if (characters.includes(letter.toLowerCase())) {
-              var index = characters.indexOf(letter.toLowerCase());
+            if (characters.includes(letter)) {
+              // The indexOf() method is used to find the index of a specific letter in the characters array.
+              var index = characters.indexOf(letter)+1;
             // Tell the user that the word was found
             console.log("FOUND: " + letter + " is in place: "+ index);
             }
           // Otherwise the word was not found
             else {
+              // Reduce the life
+              life--
               // Give the output to the user
-              console.log("NOT FOUND: " + letter);
-              }
+              console.log(letter + " NOT FOUND! " + "life: "+ life);
+             
+            }
+            // If the life amount becomes 0 breaking the functon and the game.
+            if( life == 0){
+              console.log ("Sorry, you couldn't guess the right word")
+              break;
+            }
+            
+            
         }
+
 }
 
 </script>
