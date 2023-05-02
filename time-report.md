@@ -15,3 +15,6 @@
 -2023-05-01 worked for 3 hours.
   - Create an array with freespace as long as the letters of the word.
   - Update the right letter in the free space.
+
+-2023-05-03 worked for 2 hours.
+  - Giving the message of victory to user.
