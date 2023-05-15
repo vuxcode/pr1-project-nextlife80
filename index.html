@@ -29,6 +29,9 @@
       }
   </style>
 
+  <!-- Create info element in HTML -->
+  <h1 id="info"></h1>
+
   <!--Showing the title-->
   <h1>The Hangman Game</h1>
 
@@ -61,6 +64,9 @@
     // Add the click event to the button to run the function
     startButton.addEventListener("click", game);
 
+    // Find the "info" element
+    var output = document.getElementById("info");
+
     // Create a game function
     function game() {
 
@@ -81,39 +87,49 @@
       var life = 5;
 
       // create an Array to list the letters from user
-      var guessletter = [];
+      var guessLetter = [];
 
-      // Create an array with freespace as long as the letters of the word.
-      var freespace = '_'.repeat(characters.length).split("");
+      // Create an array with freespace as long as the letters of the word and then split it.
+      var freeSpace = "_".repeat(characters.length).split("");
+
+      // Create a variable for the place of the letter.
+      var place 
 
       // Create a loop for inpute the letters
       for (var tried = 100; tried > 0; tried--) {
 
-        // Input a letter by user
+        // Input a letter by user, and all the characters converted to lowercase.
         var letter = prompt ("Guess one letter of the chosen fruit or vegetable name:").toLowerCase();
 
         // Add the letters in array list
-        guessletter.push(letter)
+        guessLetter.push(letter)
 
         // Show to user the letters he had guessed
-        console.log("The letters that you have guessed: " + guessletter);
+        console.log("The letters that you have guessed: " + guessLetter);
 
-        // If the letter is found in the word
-        if (characters.includes(letter)) {
+        for (i=0; i<characters.length; i++ ) {
 
-          // The indexOf() method is used to find the index of a specific letter in the characters array.
-          var index = characters.indexOf(letter)+1;
+          // If the letter is found in the word.
+          if (characters[i]==letter) {
 
-          // Tell to user that the word was found
-          console.log("FOUND: " + letter + " is in place: "+ index);
+            // To find the right place of the letter in the word
+            place = i+1
 
-          // update the right letter in the right free space
-          freespace[index-1] = letter;
-          console.log(freespace)
+            // The .indexOf() method is used to find the index of a specific letter in the characters array.
+            //var index = characters.indexOf(letter)+1;
+
+            // Tell to user that the word was found
+            console.log("Letter "+ letter +" founded: " + letter + " is in the place: "+ place);
+
+            // update the right letter in the right free space in the array freeSpace.
+            freeSpace[i] = letter;
           }
+          }
+          console.log(freeSpace)
+          
 
             // Otherwise the word was not found
-            else {
+            if(characters.includes(letter)===false) {
 
               // Reduce the life
               life--;
@@ -126,12 +142,12 @@
         if (life == 0) {
 
           //  Give the message of losing. Breaking the functon and the game.
-          console.log ("Sorry, you couldn't guess the right word");
+          console.log("Sorry, you couldn't guess the right word");
           break;
 
           // The join() is used to join all elements of an array into a string. 
-          // If characters elements is equals to freespace elements, show to user that he had won, and break the program.
-          } else if (characters.join('') === freespace.join('')) {
+          // If characters elements is equals to freeSpace elements, show to user that he had won, and break the program.
+          } else if (characters.join('') === freeSpace.join('')) {
             console.log("Congratulations, you guessed the word: " + characters.join(''));
             break;
             }
