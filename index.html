@@ -1,158 +1,172 @@
-
 <!--to use the "dark" color scheme by default-->
 <meta name="color-scheme" content="dark">
 
-  <!--The <title> tag in HTML specifies the title of the webpage.-->
-  <title>The Hangman Game</title>
+<!--The <title> tag in HTML specifies the title of the webpage.-->
+<title>The Hangman Game</title>
 
-  <!--To change the font size of Paragraphs by use P{} and the Heading by use h1{} in the style tag-->
-  <style>
-    p {
-        font-size: 20px;
+<!--To change the font size of Paragraphs by use P{} and the Heading by use h1{} in the style tag-->
+<style>
+  p {
+    font-size: 20px;
+  }
+
+  h1 {
+    font-size: 30px;
+    text-align: center;
+  }
+
+
+
+  /* style for the HTML element with the ID "startProgram".*/
+  #startProgram {
+    width: 150px;
+    height: 40px;
+    color: chartreuse;
+    background-color: black;
+    border: 2px solid chartreuse;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+
+  /* The hidden(class) defines as "none display"*/
+  .hidden {
+    display: none;
+  }
+</style>
+
+
+
+<!--Showing the title-->
+<h1>The Hangman Game</h1>
+
+<!--To write the Game descriptions with <p> tag-->
+<!--To use the <br> tag to start a new line-->
+<p>
+  * The game picks one fruit name.<br>
+  * You have 5 opportunities to guess the letters in the word.<br>
+  * If you guess all the letters in the word you win, otherwise you lose.<br><br>
+  Push the START button to start the game<br>
+</p>
+
+<!--Add a button tag to start the game-->
+<button id="startProgram">START</button>
+
+<!--The space for users' input-->
+<input type="text" id="input1" class="hidden">
+
+<!--The rest of the code by JS-->
+<script>
+
+  // Create an array contains the words.
+  var words = ["apple", "orange", "pear", "cherry",
+    "strawberry", "nectarine", "grape", "mango", "blueberry",
+    "pomegranate", "plum", "banana", "raspberry", "mandarin",
+    "papaya", "kiwi", "pineapple", "lime", "lemon", "apricot",
+    "grapefruit", "melon", "coconut", "avocado", "peach", "cucumber",
+    "fig", "dragon", "kiwi", "garlic", "tomato", "potato", "lettuce", "onion"];
+
+  // Create a variable to find the button element in the program
+  var startButton = document.getElementById("startProgram");
+
+  // Add the click event to the button to run the function
+  startButton.addEventListener("click", game);
+
+  // Find the "input1" element
+  var input = document.getElementById("input1");
+
+  // The player don't play before click on Game button.
+  var inplay = false;
+
+  // Create a game function
+  function game() {
+
+    // The player click on the game button to play
+    inplay = true;
+
+    //It toggles the "hidden" class on the input element
+    input.classList.toggle("hidden");
+
+    // Inputs an index From the product of Math.(random) and words.length in the variable randomIndex.
+    // The Math.floor function rounds the input number down to the next nearest integer.
+    var randomIndex = Math.floor(Math.random() * words.length);
+
+    // Inputs randomly a word from the array words[] in randomWord.
+    var randomWord = words[randomIndex];
+
+    // Split the word into characters
+    var characters = randomWord.split("");// e.g.  ['a', 'p', 'r', 'i', 'c', 'o', 't']
+
+    // TEST temporarily  
+    console.log(characters);
+
+    // create a variable include the lifetime value
+    var life = 5;
+
+    // create an Array to list the letters from user
+    var guessLetter = [];
+
+    // Create an array with freespace as long as the letters of the word and then split it.
+    var freeSpace = "_".repeat(characters.length).split("");
+
+    // Create a variable for the place of the letter.
+    var place
+
+    // Create a loop for inpute the letters
+    for (var tried = 100; tried > 0; tried--) {
+
+      // Input a letter by user, and all the characters converted to lowercase.
+      var letter = prompt("Guess one letter of the chosen fruit or vegetable name:").toLowerCase();
+
+      // Add the letters in array list
+      guessLetter.push(letter)
+
+      // Show to user the letters he had guessed
+      console.log("The letters that you have guessed: " + guessLetter);
+
+      for (i = 0; i < characters.length; i++) {
+
+        // If the letter is found in the word.
+        if (characters[i] == letter) {
+
+          // To find the right place of the letter in the word
+          place = i + 1
+
+          // The .indexOf() method is used to find the index of a specific letter in the characters array.
+          //var index = characters.indexOf(letter)+1;
+
+          // Tell to user that the word was found
+          console.log("Letter " + letter + " founded: " + letter + " is in the place: " + place);
+
+          // update the right letter in the right free space in the array freeSpace.
+          freeSpace[i] = letter;
+        }
       }
-    
-    h1 {
-        font-size: 30px;
-        text-align: center;
+      console.log(freeSpace)
+
+
+      // Otherwise the word was not found
+      if (characters.includes(letter) === false) {
+
+        // Reduce the life
+        life--;
+
+        // Give the output to the user
+        console.log(letter + " NOT FOUND! " + "The remaining life: " + life);
       }
 
-      
-    /* style for the HTML element with the ID "startProgram".*/
-    #startProgram {
-        width: 150px;
-        height: 40px;
-        color: chartreuse;
-        background-color: black;
-        border: 2px solid chartreuse;
-        border-radius: 5px;
-        cursor: pointer;
-      }
-  </style>
+      // If the life amount becomes 0. 
+      if (life == 0) {
 
-  <!-- Create info element in HTML -->
-  <h1 id="info"></h1>
+        //  Give the message of losing. Breaking the functon and the game.
+        console.log("Sorry, you couldn't guess the right word");
+        break;
 
-  <!--Showing the title-->
-  <h1>The Hangman Game</h1>
-
-  <!--To write the Game descriptions with <p> tag-->
-  <!--To use the <br> tag to start a new line-->
-  <p>
-    * The game picks one fruit name.<br>
-    * You have 5 opportunities to guess the letters in the word.<br>
-    * If you guess all the letters in the word you win, otherwise you lose.<br><br>
-    Push the START button to start the game<br>
-  </p>
-
-  <!--Add a button tag to start the game-->
-  <button id="startProgram">START</button>
-
-  <!--The rest of the code by Java-->
-  <script>
-
-    // Create an array contains the words.
-    var words = ["apple", "orange", "pear", "cherry", 
-            "strawberry", "nectarine", "grape", "mango", "blueberry",
-            "pomegranate", "plum", "banana", "raspberry","mandarin", 
-            "papaya", "kiwi", "pineapple", "lime", "lemon", "apricot", 
-            "grapefruit", "melon", "coconut", "avocado", "peach", "cucumber", 
-            "fig", "dragon", "kiwi", "garlic", "tomato", "potato", "lettuce", "onion"];
-
-    // Create a variable to find the button element in the program
-    var startButton = document.getElementById("startProgram");
-
-    // Add the click event to the button to run the function
-    startButton.addEventListener("click", game);
-
-    // Find the "info" element
-    var output = document.getElementById("info");
-
-    // Create a game function
-    function game() {
-
-      // Inputs an index From the product of Math.(random) and words.length in the variable randomIndex.
-      // The Math.floor function rounds the input number down to the next nearest integer.
-      var randomIndex = Math.floor(Math.random() * words.length);
-
-      // Inputs randomly a word from the array words[] in randomWord.
-      var randomWord = words[randomIndex];
-
-      // Split the word into characters
-      var characters = randomWord.split("");// e.g.  ['a', 'p', 'r', 'i', 'c', 'o', 't']
-
-      // TEST temporarily  
-      console.log(characters);
-
-      // create a variable include the lifetime value
-      var life = 5;
-
-      // create an Array to list the letters from user
-      var guessLetter = [];
-
-      // Create an array with freespace as long as the letters of the word and then split it.
-      var freeSpace = "_".repeat(characters.length).split("");
-
-      // Create a variable for the place of the letter.
-      var place 
-
-      // Create a loop for inpute the letters
-      for (var tried = 100; tried > 0; tried--) {
-
-        // Input a letter by user, and all the characters converted to lowercase.
-        var letter = prompt ("Guess one letter of the chosen fruit or vegetable name:").toLowerCase();
-
-        // Add the letters in array list
-        guessLetter.push(letter)
-
-        // Show to user the letters he had guessed
-        console.log("The letters that you have guessed: " + guessLetter);
-
-        for (i=0; i<characters.length; i++ ) {
-
-          // If the letter is found in the word.
-          if (characters[i]==letter) {
-
-            // To find the right place of the letter in the word
-            place = i+1
-
-            // The .indexOf() method is used to find the index of a specific letter in the characters array.
-            //var index = characters.indexOf(letter)+1;
-
-            // Tell to user that the word was found
-            console.log("Letter "+ letter +" founded: " + letter + " is in the place: "+ place);
-
-            // update the right letter in the right free space in the array freeSpace.
-            freeSpace[i] = letter;
-          }
-          }
-          console.log(freeSpace)
-          
-
-            // Otherwise the word was not found
-            if(characters.includes(letter)===false) {
-
-              // Reduce the life
-              life--;
-
-              // Give the output to the user
-              console.log(letter + " NOT FOUND! " + "The remaining life: "+ life);
-            }
-
-        // If the life amount becomes 0. 
-        if (life == 0) {
-
-          //  Give the message of losing. Breaking the functon and the game.
-          console.log("Sorry, you couldn't guess the right word");
-          break;
-
-          // The join() is used to join all elements of an array into a string. 
-          // If characters elements is equals to freeSpace elements, show to user that he had won, and break the program.
-          } else if (characters.join('') === freeSpace.join('')) {
-            console.log("Congratulations, you guessed the word: " + characters.join(''));
-            break;
-            }
+        // The join() is used to join all elements of an array into a string. 
+        // If characters elements is equals to freeSpace elements, show to user that he had won, and break the program.
+      } else if (characters.join('') === freeSpace.join('')) {
+        console.log("Congratulations, you guessed the word: " + characters.join(''));
+        break;
       }
     }
-  </script>
-
-
+  }
+</script>

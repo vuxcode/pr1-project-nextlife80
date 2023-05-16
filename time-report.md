@@ -22,4 +22,8 @@
 -2023-05-15 worked for 3 hours.
   - Fix the bug in the loop(finds 
     the other same letter in the word if there is more than one).
-    
+
+-2023-05-16 Worked for 3 hours.
+  - Create a input place with hidden class. The hidden class toggles by click on the game.
+
+  
