@@ -26,4 +26,5 @@
 -2023-05-16 Worked for 3 hours.
   - Create a input place with hidden class. The hidden class toggles by click on the game.
 
-  
+-2023-05-17 Worked for 6 hours.
+  - Moved all messages from Console to HTML display. Add a function to reload the game. And   add alphabets keys instead the Prompt.
