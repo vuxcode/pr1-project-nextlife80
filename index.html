@@ -1,4 +1,4 @@
-<!--to use the "dark" color scheme by default-->
+<!--Use the "dark" color scheme by default-->
 <meta name="color-scheme" content="dark">
 
 <!--The <title> tag in HTML specifies the title of the webpage.-->
@@ -7,31 +7,16 @@
 <!--To change the font size of Paragraphs by use P{} and the Heading by use h1{} in the style tag-->
 <style>
   p {
-    font-size: 20px;
+    font-size: 21px;
   }
 
   h1 {
-    font-size: 45px;
+    font-size: 56px;
     text-align: center;
   }
 
 
-
-  /* style for the HTML element with the ID "startProgram".*/
-  #key {
-    width: 50px;
-    height: 20px;
-    color: rgb(9, 9, 8);
-    background-color: rgba(232, 241, 236, 0.744);
-    border: 2px solid rgb(23, 181, 14);
-    border-radius: 50px;
-    cursor: pointer;
-    position: relative;
-    /* left: 600px; */
-
-  }
-
-  /* style for the HTML element with the ID "startProgram".*/
+  /* Style for the HTML element with the ID "startProgram".*/
   #startProgram {
     width: 150px;
     height: 40px;
@@ -40,18 +25,46 @@
     border: 2px solid chartreuse;
     border-radius: 50px;
     cursor: pointer;
+
   }
 
-
-
-  /* The hidden(class) defines as "none display"*/
-  .hidden {
-    display: none;
+  #message1,
+  #message7,
+  #message8 {
+    font-size: 21px;
+    height: 60;
   }
 
+  /* Style for keys with class.*/
+  .key {
+    width: 70px;
+    height: 40px;
+    color: rgb(9, 9, 8);
+    background-color: rgba(232, 241, 236, 0.744);
+    border: 2px solid rgb(23, 181, 14);
+    border-radius: 50px;
+    cursor: pointer;
+    position: relative;
+
+
+  }
+
+  /* Different classes*/
   .property {
     font-size: 20px;
     height: 40;
+  }
+
+  .colorRed {
+    color: red;
+  }
+
+  .colorGrean {
+    color: chartreuse
+  }
+
+  .colorYellow {
+    color: yellow;
   }
 
   main {
@@ -59,23 +72,20 @@
     justify-content: space-around;
   }
 
+  /* Controls for the left <div>*/
   .controls {
     position: relative;
-    top: 50px;
-  }
-
-  #message1, #message7, #message8 {
-    font-size: 20px;
-    height: 40;
+    top: 85px;
+    left: 10px;
   }
 </style>
 
 <main>
   <div>
     <!--Showing the title-->
-    <h1>The Hangman Game</h1>
+    <h1>The <span style="color: red;"> Hangman</span> Game</h1>
 
-    <!--To write the Game descriptions with <p> tag-->
+    <!--Write the Game descriptions with <p> tag-->
     <!--To use the <br> tag to start a new line-->
     <p>
       * The game picks one fruit name.<br>
@@ -85,11 +95,9 @@
     </p>
 
     <!--Add a button tag to start the game-->
-    <button id="startProgram">START</button>
+    <button id="startProgram" class="property">START</button>
   </div>
   <div class="controls">
-    <!--The space for users' input-->
-    <input type="text" id="input1" class="hidden">
 
     <!--Create a container by id "alphabetContainer" -->
     <div id="alphabetContainer"></div>
@@ -105,56 +113,53 @@
     <div id="message8" class=></div>
 
     <!--Add the buttons for alphabets-->
-    <button id="key" onclick="processLetter('A')">A</button>
-    <button id="key" onclick="processLetter('B')">B</button>
-    <button id="key" onclick="processLetter('C')">C</button>
-    <button id="key" onclick="processLetter('D')">D</button>
-    <button id="key" onclick="processLetter('E')">E</button>
-    <button id="key" onclick="processLetter('F')">F</button>
-    <button id="key" onclick="processLetter('G')">G</button>
-    <button id="key" onclick="processLetter('H')">H</button>
-    <button id="key" onclick="processLetter('I')">I</button>
-    <button id="key" onclick="processLetter('J')">J</button>
+    <button class="key" onclick="processLetter('A')">A</button>
+    <button class="key" onclick="processLetter('B')">B</button>
+    <button class="key" onclick="processLetter('C')">C</button>
+    <button class="key" onclick="processLetter('D')">D</button>
+    <button class="key" onclick="processLetter('E')">E</button>
+    <button class="key" onclick="processLetter('F')">F</button>
+    <button class="key" onclick="processLetter('G')">G</button>
+    <button class="key" onclick="processLetter('H')">H</button>
+    <button class="key" onclick="processLetter('I')">I</button>
+    <button class="key" onclick="processLetter('J')">J</button>
     <br />
-    <button id="key" onclick="processLetter('K')">K</button>
-    <button id="key" onclick="processLetter('L')">L</button>
-    <button id="key" onclick="processLetter('M')">M</button>
-    <button id="key" onclick="processLetter('N')">N</button>
-    <button id="key" onclick="processLetter('O')">O</button>
-    <button id="key" onclick="processLetter('P')">P</button>
-    <button id="key" onclick="processLetter('Q')">Q</button>
-    <button id="key" onclick="processLetter('R')">R</button>
-    <button id="key" onclick="processLetter('S')">S</button>
-    <button id="key" onclick="processLetter('T')">T</button>
+    <button class="key" onclick="processLetter('K')">K</button>
+    <button class="key" onclick="processLetter('L')">L</button>
+    <button class="key" onclick="processLetter('M')">M</button>
+    <button class="key" onclick="processLetter('N')">N</button>
+    <button class="key" onclick="processLetter('O')">O</button>
+    <button class="key" onclick="processLetter('P')">P</button>
+    <button class="key" onclick="processLetter('Q')">Q</button>
+    <button class="key" onclick="processLetter('R')">R</button>
+    <button class="key" onclick="processLetter('S')">S</button>
+    <button class="key" onclick="processLetter('T')">T</button>
     <br />
-    <button id="key" onclick="processLetter('U')">U</button>
-    <button id="key" onclick="processLetter('V')">V</button>
-    <button id="key" onclick="processLetter('W')">W</button>
-    <button id="key" onclick="processLetter('X')">X</button>
-    <button id="key" onclick="processLetter('Y')">Y</button>
-    <button id="key" onclick="processLetter('Z')">Z</button>
+    <button class="key" onclick="processLetter('U')">U</button>
+    <button class="key" onclick="processLetter('V')">V</button>
+    <button class="key" onclick="processLetter('W')">W</button>
+    <button class="key" onclick="processLetter('X')">X</button>
+    <button class="key" onclick="processLetter('Y')">Y</button>
+    <button class="key" onclick="processLetter('Z')">Z</button>
   </div>
 </main>
-<!--The rest of the code by JS-->
+<!--The rest of the codes by JS-->
 <script>
 
   // Create an array contains the words.
-  var words = ["apple", "orange", "pear", "cherry",
-    "strawberry", "nectarine", "grape", "mango", "blueberry",
-    "pomegranate", "plum", "banana", "raspberry", "mandarin",
-    "papaya", "kiwi", "pineapple", "lime", "lemon", "apricot",
-    "grapefruit", "melon", "coconut", "avocado", "peach", "cucumber",
-    "fig", "dragon", "kiwi", "garlic", "tomato", "potato", "lettuce", "onion"];
+  var words = ["APPLE", "ORANGE", "PEAR", "CHERRY",
+    "STRAWBERRY", "NECTARINE", "GRAPE", "MANGO", "BLUEBERRY",
+    "POMEGRANATE", "PLUM", "BANANA", "RASPBERRY", "MANDARIN",
+    "PAPAYA", "KIWI", "PINEAPPLE", "LIME", "LEMON", "APRICOT",
+    "GRAPEFRUIT", "MELON", "COCONUT", "AVOCADO", "PEACH", "CUCUMBER",
+    "FIG", "DRAGON", "KIWI", "GARLIC", "TOMATO", "POTATO", "LETTUCE", "ONION"];
 
-  // Create an array of all alphabets
-  var alphabets = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k",
-    "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
 
   // Create a variable to find the button element in the program
   var startButton = document.getElementById("startProgram");
 
-  // Create a variable to find the button element in the program
-  var key = document.getElementById("key");
+  // Find all buttons with the class "key"
+  var key = document.getElementsByClassName("key");
 
   // Add a function to reload the game 
   function reload() {
@@ -164,8 +169,6 @@
   // Add the click event to the button to start a new game
   startButton.addEventListener("click", reload);
 
-  // Find the "input1" element
-  var input = document.getElementById("input1");
 
   // Retrieves HTML elements with id attributes and assigns they to the variables.
   var message1 = document.getElementById("message1");
@@ -181,19 +184,9 @@
   // Get the container for alphabet buttons
   var alphabetContainer = document.getElementById("alphabetContainer");
 
-  // The player don't play before click on Game button.
-  var inplay = false;
-
-
+  // Create an array for the letters user had guessed
   var guessLetter = [];
 
-
-  // The player click on the game button to play
-  inplay = true;
-
-  //It toggles the "hidden" class on the input element and the key
-  //input.classList.toggle("hidden");
-  //key.classList.toggle("hidden");
 
   // Inputs an index From the product of Math.(random) and words.length in the variable randomIndex.
   // The Math.floor function rounds the input number down to the next nearest integer.
@@ -205,82 +198,89 @@
   // Split the word into characters
   var characters = randomWord.split("");// e.g.  ['a', 'p', 'r', 'i', 'c', 'o', 't']
 
-  // TEST temporarily  
+  // Show the word characters in console  
   console.log(characters);
 
-  // create a variable include the lifetime value
+  // Create a variable include the lifetime value
   var life = 5;
 
-  // create an Array to list the letters from user
-
-
-  // Create an array with freespace as long as the letters of the word and then split it.
+  // Create an array with freespace as long as the letters of the word, and then split it.
   var freeSpace = "_".repeat(characters.length).split("");
 
-  message2.textContent = freeSpace;
+  // Displays the word length
+  message2.innerHTML = 'The chosen word has: <span class="colorGrean">' + characters.length + '<span/> characters.';
 
   // Create a variable for the place of the letter.
   var place
 
-  // Update the content of the div
-  message1.textContent = "Guess one letter of the chosen fruit or vegetable name";
+  // Message on the display
+  message1.textContent = "* GUESS ONE LETTER OF THE CHOSEN FRUIT OR VEGETABLE NAME *";
 
   // Add a function to process the letter 
   function processLetter(letter) {
-    letter = letter.toLowerCase();
-    console.log(letter)
-    // Input a letter by user, and all the characters converted to lowercase.
-    // var letter = prompt("Guess one letter of the chosen fruit or vegetable name:").toLowerCase();
+    letter = letter;
+    console.log(letter);
 
     // Add the letters in array list
-    guessLetter.push(letter)
+    guessLetter.push(letter);
 
-    // Show to user the letters he had guessed
-    message4.textContent = "The letters that you have guessed: " + guessLetter;
+    // Displays the letters that user has guessed
+    message4.textContent = "The letters that you have guessed is " + guessLetter;
 
     for (i = 0; i < characters.length; i++) {
 
       // If the letter is found in the word.
       if (characters[i] == letter) {
 
-        // To find the right place of the letter in the word
+        // The place of the letter in the word in variable "place"
         place = i + 1
 
-        // The .indexOf() method is used to find the index of a specific letter in the characters array.
-        //var index = characters.indexOf(letter)+1;
+        // Tell to user that the letter is found
+        message3.innerHTML = 'Letter <span class="colorGrean">' + letter + '</span> founded.' + '<span class="colorGrean">' + " " + letter + '</span> is in the place: ' + place;
 
-        // Tell to user that the word was found
-        message3.textContent = "Letter " + letter + " founded: " + letter + " is in the place: " + place;
-
-        // update the right letter in the right free space in the array freeSpace.
+        // update the found letter in the suitable space in the array freeSpace.
         freeSpace[i] = letter;
       }
     }
-    message5.textContent = freeSpace;
+
+    // Displays the freeSpace array with the correct letters 
+    message5.textContent = freeSpace.join(" ");
+    message5.className = 'colorGrean';
 
 
-    // Otherwise the word was not found
+    // If the letter is not in the word, reduce the life
     if (characters.includes(letter) === false) {
 
       // Reduce the life
       life--;
 
       // Give the output to the user
-      message6.textContent = letter + " NOT FOUND! " + "The remaining life: " + life;
+      //With <span> tag applies a CSS class changes the color.
+      message6.innerHTML = letter + ' <span class="colorRed">  IS NOT FOUND!</span>' + " The remaining " + '<span class="colorRed">LIFE: </span>' + life + " of 5";
+
     }
 
     // If the life amount becomes 0. 
     if (life == 0) {
 
       //  Give the message of losing. Breaking the functon and the game.
-      message7.textContent = "Sorry, you couldn't guess the right word. Click on START for a new game ";
+      message7.innerHTML = '<span class="colorRed">SORRY! </span>' + "YOU LOST. Click on" + '<span class="colorGrean"> START </span>' + "for a new game ";
+      message8.innerHTML = "The word was: " + '<span class="colorYellow">' + randomWord + '</span>';
 
+      // Disable all buttons with the class "key"
+      for (var i = 0; i < key.length; i++) {
+        key[i].disabled = true;
+      }
 
       // The join() is used to join all elements of an array into a string. 
-      // If characters elements is equals to freeSpace elements, show to user that he had won, and break the program.
+      // If characters elements is equals to freeSpace elements, show to user that he had won.
     } else if (characters.join('') === freeSpace.join('')) {
-      message8.textContent = "Congratulations, you guessed the word: " + characters.join('')+" Click on START for a new game";
-      return;
+      message8.innerHTML = '<span class="colorGrean">CONGRATULATIONS!</span>' + " You guessed the right word: " + characters.join('') + "." + '<br>' + " Click on" + '<span class="colorGrean"> START</span>' + " for a new game";
+
+      // Disable all buttons with the class "key"
+      for (var i = 0; i < key.length; i++) {
+        key[i].disabled = true;
+      }
     }
   }
 </script>
